@@ -15,17 +15,8 @@ module Mongoid
       end
   end
   
-  module Document
-    def initialize(attrs = nil)
-      building do
-        @new_record = true
-        @attributes = apply_default_attributes
-        process(attrs) do
-          yield self if block_given?
-          # identify
-        end
-        run_callbacks(:initialize) { self }
-      end
+  module Document    
+    def identify
     end
     
     def as_document
