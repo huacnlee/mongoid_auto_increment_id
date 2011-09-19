@@ -14,7 +14,11 @@ module Mongoid
     end
   end
   
-  module Document    
+  module Document  
+    included do
+      identity :type => String
+    end
+        
     def identify
     end
     
