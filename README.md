@@ -18,3 +18,7 @@ ruby > post.save
 ruby > post.inspect
  => "#<Post _id: 6, _type: nil, title: \"Hello world\", body: nil>" 
 ```
+
+# DEVELOPMENT STATUS
+
+This still have issues, can not be use.
