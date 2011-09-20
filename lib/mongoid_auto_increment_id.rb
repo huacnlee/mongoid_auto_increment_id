@@ -1,5 +1,6 @@
 module Mongoid  
-  class Identity        
+  class Identity   
+    # Generate auto increment id     
     def generate_id
       counter = Mongoid.master.collection("mongoid.auto_increment_ids")
       table_name = @document.class.to_s.tableize
@@ -7,13 +8,13 @@ module Mongoid
                                           :update => {:$inc => {:c => 1}}, 
                                           :new => true, 
                                           :upsert => true})
-      o["c"].to_s
+      o["c"].to_i
     end
   end
   
   module Document  
     included do
-      identity :type => String
+      identity :type => Integer
     end
 
     def identify
@@ -29,8 +30,17 @@ module Mongoid
     end
   end
   
+  module Criterion #:nodoc:
+    class Unconvertable < String
+      def initialize(value)
+        super(value.to_s)
+      end
+    end
+  end
+  
   module Extensions #:nodoc:
     module ObjectId #:nodoc:
+      # Override Mongoid::Extensions::ObjectId::Conversions.convert for covert id to Integer type.
       module Conversions
         def convert(klass, args, reject_blank = true)
           case args
@@ -40,14 +50,14 @@ module Mongoid
           when ::Hash
             args.tap do |hash|
               hash.each_pair do |key, value|
-                next unless klass.object_id_field?(key)
-                begin
-                  hash[key] = convert(klass, value, reject_blank)
-                rescue BSON::InvalidObjectId; end
+                hash[key] = convert(klass, value, reject_blank)
               end
             end
+          when ::Integer
+            args
           else
-            args.to_s
+            return nil if not args.to_s.match(/\d+/)
+            args.to_i
           end
         end
       end
