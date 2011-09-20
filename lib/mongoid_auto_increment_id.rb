@@ -1,16 +1,13 @@
-module Mongoid
-  class Counter
-    include Components
-  end
-  
+module Mongoid  
   class Identity        
     def generate_id
+      counter = Mongoid.master.collection("mongoid.auto_increment_ids")
       table_name = @document.class.to_s.tableize
-      o = Counter.collection.find_and_modify({:query => {:_id => table_name},
+      o = counter.find_and_modify({:query => {:_id => table_name},
                                           :update => {:$inc => {:c => 1}}, 
                                           :new => true, 
                                           :upsert => true})
-      Criterion::Unconvertable.new(o["c"].to_s)
+      o["c"].to_s
     end
   end
   
@@ -24,10 +21,11 @@ module Mongoid
     
     alias_method :super_as_document,:as_document
     def as_document
-      if attributes["_id"].blank?
-        attributes["_id"] = Identity.new(self).generate_id
+      result = super_as_document
+      if result["_id"].blank?
+        result["_id"] = Identity.new(self).generate_id
       end
-      super_as_document
+      result
     end
   end
 end
