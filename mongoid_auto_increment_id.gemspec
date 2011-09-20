@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "mongoid_auto_increment_id"
-  s.version     = "0.1"
+  s.version     = "0.2"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jason Lee"]
   s.email       = ["huacnlee@gmail.com"]
@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "mongoid", ["2.2.0"]
+  s.add_dependency "mongoid", ["> 2.0.0"]
 end

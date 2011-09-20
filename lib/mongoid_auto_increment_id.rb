@@ -22,18 +22,12 @@ module Mongoid
     def identify
     end
     
+    alias_method :super_as_document,:as_document
     def as_document
       if attributes["_id"].blank?
         attributes["_id"] = Identity.new(self).generate_id
       end
-      attributes.tap do |attrs|
-        relations.each_pair do |name, meta|
-          if meta.embedded?
-            relation = send(name)
-            attrs[name] = relation.as_document unless relation.blank?
-          end
-        end
-      end
+      super_as_document
     end
   end
 end

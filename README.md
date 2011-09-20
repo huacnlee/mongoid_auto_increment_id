@@ -8,6 +8,10 @@ Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.
 gem 'mongoid_auto_increment_id'
 ```
 
+# REQUIREMENTS
+
+* Mongoid 2.0+
+
 # USAGE
 
 ```shell
@@ -17,8 +21,6 @@ ruby > post.save
  => true
 ruby > post.inspect
  => "#<Post _id: 6, _type: nil, title: \"Hello world\", body: nil>" 
+ruby > Post.find("6")
+ => "#<Post _id: 6, _type: nil, title: \"Hello world\", body: nil>" 
 ```
-
-# DEVELOPMENT STATUS
-
-This still have issues, can not be use.
