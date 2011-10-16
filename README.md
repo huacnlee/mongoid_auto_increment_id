@@ -2,6 +2,10 @@ This gem for change Mongoid id field as Integer like MySQL.
 
 Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.mongodb.org/display/DOCS/How+to+Make+an+Auto+Incrementing+Field)
 
+## Status
+
+[![CI Status](https://secure.travis-ci.org/huacnlee/mongoid_auto_increment_id.png)](http://travis-ci.org/huacnlee/mongoid_auto_increment_id)
+
 # Installation
 
 ```ruby
