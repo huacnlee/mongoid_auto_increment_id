@@ -7,11 +7,27 @@ describe "Mongoid::AutoIncrementId" do
     User.delete_all
   end
   
+  it "does Id start from 1" do
+    Post.create(:title => "Foo bar").id.should == 1
+    User.create(:email => "huacnlee@gmail.com").id.should == 1
+  end
+  
   it "does can return Integer Id when create/save" do
     Post.create(:title => "Foo bar").id.should be_a_kind_of(Integer)
     p1 = Post.new(:title => "Foo bar")
     p1.save
     p1.id.should be_a_kind_of(Integer)
+  end
+  
+  it "it does generated ids was incremented and no repeat" do
+    p1 = Post.create(:title => "Foo bar")
+    p2 = Post.create(:title => "Bar foo")
+    p3 = Post.create(:title => "Hello world.")
+    (p2.id - 1).should == p1.id
+    (p3.id - 2).should == p1.id
+    p3.destroy
+    p4 = Post.create(:title => "Create Hellow world again.")
+    (p4.id - 2).should == p2.id
   end
   
   it "does return nil id when Model.new" do
