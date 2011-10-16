@@ -1,4 +1,4 @@
 test:
   host: 127.0.0.1
   port: 27017
-  database: maii_test
+  database: mongoid_aii_test
