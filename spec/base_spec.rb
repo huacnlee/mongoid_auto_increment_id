@@ -41,6 +41,14 @@ describe "Mongoid::AutoIncrementId" do
     Post.find(post.id.to_s).should == post
   end
   
+  it "does can find by where :_id" do
+    post1 = Post.create(:title => "Foo bar")
+    post2 = Post.create(:title => "Bar Foo")
+    post3 = Post.create(:title => "Foo Foo")
+    Post.where(:_id => post1.id).first.title == "Foo Bar"
+    Post.where(:_id => post2.id).first.title == "Bar Foo"
+  end
+  
   it "does 1..N working fine" do
     user1 = User.new(:email => "huacnlee@gmail.com",:name => "Jason Lee")
     user1.save

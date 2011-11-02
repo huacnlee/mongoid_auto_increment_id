@@ -13,10 +13,12 @@ module Mongoid
   end
   
   module Document  
+    # define Integer for id field
     included do
       identity :type => Integer
     end
 
+    # hack id nil when Document.new
     def identify
     end
     
