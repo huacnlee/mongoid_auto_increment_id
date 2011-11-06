@@ -88,4 +88,11 @@ describe "Mongoid::AutoIncrementId" do
     Post.first.comments.count.should == 2
     Post.first.comments.first.id.should be_a_kind_of(Integer)
   end
+  
+  it "does super class can working" do
+    sub_post = SubPost.create(:title => "Hahahaha",:sub_body => "This is sub body")
+    sub_post.id.should_not == nil
+    sub_post.title.should == "Hahahaha"
+    sub_post.sub_body.should == "This is sub body"
+  end
 end

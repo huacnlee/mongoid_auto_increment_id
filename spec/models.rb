@@ -21,6 +21,10 @@ class Comment
   embedded_in :post
 end
 
+class SubPost < Post
+  field :sub_body
+end
+
 class Tag
   include Mongoid::Document
   
