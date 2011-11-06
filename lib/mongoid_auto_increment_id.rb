@@ -1,10 +1,13 @@
 module Mongoid  
-  class Identity   
+  class Identity      
+    def identify
+      nil
+    end
+    
     # Generate auto increment id     
     def generate_id
       counter = Mongoid.master.collection("mongoid.auto_increment_ids")
-      table_name = @document.class.to_s.tableize
-      o = counter.find_and_modify({:query => {:_id => table_name},
+      o = counter.find_and_modify({:query => {:_id => document.collection_name},
                                           :update => {:$inc => {:c => 1}}, 
                                           :new => true, 
                                           :upsert => true})
@@ -20,6 +23,8 @@ module Mongoid
 
     # hack id nil when Document.new
     def identify
+      Identity.new(self).create
+      nil
     end
     
     alias_method :super_as_document,:as_document

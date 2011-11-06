@@ -21,8 +21,17 @@ class Comment
   embedded_in :post
 end
 
-class SubPost < Post
-  field :sub_body
+class Log
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  
+  field :title
+end
+
+class TagLog < Log
+end
+
+class UserLog < Log
 end
 
 class Tag

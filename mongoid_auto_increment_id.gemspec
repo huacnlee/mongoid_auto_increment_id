@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "mongoid_auto_increment_id"
-  s.version     = "0.2.1"
+  s.version     = "0.2.2"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jason Lee"]
   s.email       = ["huacnlee@gmail.com"]

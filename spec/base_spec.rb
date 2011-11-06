@@ -5,13 +5,14 @@ describe "Mongoid::AutoIncrementId" do
     Post.delete_all
     Tag.delete_all
     User.delete_all
+    Log.delete_all
   end
   
   it "does Id start from 1" do
     Post.create(:title => "Foo bar").id.should == 1
     User.create(:email => "huacnlee@gmail.com").id.should == 1
   end
-  
+
   it "does can return Integer Id when create/save" do
     Post.create(:title => "Foo bar").id.should be_a_kind_of(Integer)
     p1 = Post.new(:title => "Foo bar")
@@ -89,10 +90,23 @@ describe "Mongoid::AutoIncrementId" do
     Post.first.comments.first.id.should be_a_kind_of(Integer)
   end
   
-  it "does super class can working" do
-    sub_post = SubPost.create(:title => "Hahahaha",:sub_body => "This is sub body")
-    sub_post.id.should_not == nil
-    sub_post.title.should == "Hahahaha"
-    sub_post.sub_body.should == "This is sub body"
+  it "does descendant class can working" do
+    userlog = UserLog.create(:title => "test user log")
+    userlog.errors.count.should == 0
+    taglog = TagLog.create(:title => "test tag log")
+    taglog.errors.count.should == 0
+    log = Log.create(:title => "test log")
+    log._type.should == "Log"
+    userlog._type.should == "UserLog"
+    taglog._type.should == "TagLog"
+    UserLog.count.should == 1
+    TagLog.count.should == 1
+    Log.count.should == 3
+    Log.where(:title => "test user log").count.should == 1
+    Log.where(:title => "test user log").first._type.should == "UserLog"
+    Log.where(:title => "test tag log").count.should == 1
+    Log.where(:title => "test tag log").first._type.should == "TagLog"
+    Log.where(:title => "test log").count.should == 1
+    Log.where(:title => "test log").first._type.should == "Log"
   end
 end
