@@ -57,7 +57,7 @@ module Mongoid
           when ::Hash
             args.tap do |hash|
               hash.each_pair do |key, value|
-                hash[key] = value
+                hash[key] = (key == :_id ? convert(klass,value,reject_blank) : value)
               end
             end
           when ::Integer
