@@ -20,7 +20,7 @@ end
 
 require "models"
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.mock_with :mocha
   config.after :suite do
     Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
