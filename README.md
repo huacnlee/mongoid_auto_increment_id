@@ -8,7 +8,10 @@ Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.
 
 ## Installation
 
-    gem 'mongoid_auto_increment_id'
+    # for Mongoid 2.2.x
+    gem 'mongoid_auto_increment_id', "0.2.2" 
+    # for Mongoid 2.3.x
+    gem 'mongoid_auto_increment_id', "0.3.0" 
 
 
 ## REQUIREMENTS

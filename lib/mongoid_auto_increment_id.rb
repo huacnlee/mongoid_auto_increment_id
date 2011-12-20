@@ -50,6 +50,7 @@ module Mongoid
       # Override Mongoid::Extensions::ObjectId::Conversions.convert for covert id to Integer type.
       module Conversions
         def convert(klass, args, reject_blank = true)
+          
           case args
           when ::Array
             args.delete_if { |arg| arg.blank? } if reject_blank
@@ -57,6 +58,10 @@ module Mongoid
           when ::Hash
             args.tap do |hash|
               hash.each_pair do |key, value|
+                # TODO: this code it not good
+                if key.to_s == "_id" and value.class == "".class
+                  value = value.to_i
+                end
                 hash[key] = value
               end
             end
