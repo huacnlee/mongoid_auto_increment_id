@@ -12,6 +12,8 @@ Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.
     gem 'mongoid_auto_increment_id', "0.2.2" 
     # for Mongoid 2.3.x
     gem 'mongoid_auto_increment_id', "0.3.1" 
+    # for Mongoid 2.4.x
+    gem 'mongoid_auto_increment_id', "0.4.0" 
 
 
 ## REQUIREMENTS
