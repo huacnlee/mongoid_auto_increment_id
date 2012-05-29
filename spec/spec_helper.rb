@@ -9,13 +9,22 @@ require "mocha"
 require "mongoid_auto_increment_id"
 require "uri"
 
-mongoid_config = YAML.load_file(File.join(File.dirname(__FILE__),"mongoid.yml"))['test']
+# These environment variables can be set if wanting to test against a database
+# that is not on the local machine.
+ENV["MONGOID_SPEC_HOST"] ||= "localhost"
+ENV["MONGOID_SPEC_PORT"] ||= "27017"
+
+# These are used when creating any connection in the test suite.
+HOST = ENV["MONGOID_SPEC_HOST"]
+PORT = ENV["MONGOID_SPEC_PORT"].to_i
+
+def database_id
+  ENV["CI"] ? "mongoid_aii_#{Process.pid}" : "mongoid_aii_test"
+end
+
+# Set the database that the spec suite connects to.
 Mongoid.configure do |config|
-  if !mongoid_config['uri'].blank?
-    config.master = Mongo::Connection.from_uri(mongoid_config['uri']).db(mongoid_config['uri'].split('/').last)
-  else
-    config.master = Mongo::Connection.new(mongoid_config['host'], mongoid_config['port']).db(mongoid_config['database'])
-  end
+  config.connect_to(database_id)
 end
 
 require "models"
@@ -23,6 +32,10 @@ require "models"
 RSpec.configure do |config|
   config.mock_with :mocha
   config.after :suite do
-    Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+    Mongoid.purge!
+    Mongoid::IdentityMap.clear
+    if ENV["CI"]
+      Mongoid::Threaded.sessions[:default].drop
+    end
   end
 end

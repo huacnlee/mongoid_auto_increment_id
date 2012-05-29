@@ -1,2 +1,0 @@
-test:
-  uri: mongodb://test:123456@mongoc2.grandcloud.cn:10004/mongoid_auto_increment_id

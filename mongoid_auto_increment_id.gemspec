@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "mongoid_auto_increment_id"
-  s.version     = "0.4.0"
+  s.version     = "0.5.0"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jason Lee"]
   s.email       = ["huacnlee@gmail.com"]
@@ -13,5 +13,5 @@ Gem::Specification.new do |s|
 	s.files        = Dir.glob("lib/**/*") + %w(README.md)
   s.require_path = 'lib'
 
-  s.add_dependency "mongoid", ["~> 2.4.0"]
+  s.add_dependency "mongoid", ["~> 3.0.0.rc"]
 end
