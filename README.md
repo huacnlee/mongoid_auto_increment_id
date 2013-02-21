@@ -8,31 +8,35 @@ Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.
 
 ## Installation
 
-    # for Mongoid 2.2.x
-    gem 'mongoid_auto_increment_id', "0.2.2"
-    # for Mongoid 2.3.x
-    gem 'mongoid_auto_increment_id', "0.3.1"
-    # for Mongoid 2.4.x
-    gem 'mongoid_auto_increment_id', "0.4.0"
-    # for Mongoid 3.0.x
-    gem 'mongoid_auto_increment_id', "0.5.0"
-    # for Mongoid 3.1.x
-    gem 'mongoid_auto_increment_id', "0.5.1"
+```ruby
+# for Mongoid 2.2.x
+gem 'mongoid_auto_increment_id', "0.2.2"
+# for Mongoid 2.3.x
+gem 'mongoid_auto_increment_id', "0.3.1"
+# for Mongoid 2.4.x
+gem 'mongoid_auto_increment_id', "0.4.0"
+# for Mongoid 3.0.x
+gem 'mongoid_auto_increment_id', "0.5.0"
+# for Mongoid 3.1.x
+gem 'mongoid_auto_increment_id', "0.5.1"
+```
 
 ## USAGE
 
-    ruby > post = Post.new(:title => "Hello world")
-     => #<Post _id: , _type: nil, title: "Hello world", body: nil>
-    ruby > post.save
-     => true
-    ruby > post.inspect
-     => "#<Post _id: 6, _type: nil, title: \"Hello world\", body: nil>"
-    ruby > Post.find("6")
-     => "#<Post _id: 6, _type: nil, title: \"Hello world\", body: nil>"
-    ruby > Post.find(6)
-     => "#<Post _id: 6, _type: nil, title: \"Hello world\", body: nil>"
-    ruby > Post.desc(:_id).all.to_a.collect { |row| row.id }
-     => [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1]
+```ruby
+ruby > post = Post.new(:title => "Hello world")
+ => #<Post _id: , _type: nil, title: "Hello world", body: nil>
+ruby > post.save
+ => true
+ruby > post.inspect
+ => "#<Post _id: 6, _type: nil, title: \"Hello world\", body: nil>"
+ruby > Post.find("6")
+ => "#<Post _id: 6, _type: nil, title: \"Hello world\", body: nil>"
+ruby > Post.find(6)
+ => "#<Post _id: 6, _type: nil, title: \"Hello world\", body: nil>"
+ruby > Post.desc(:_id).all.to_a.collect { |row| row.id }
+ => [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1]
+```
 
 
 ## Performance
