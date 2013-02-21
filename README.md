@@ -16,6 +16,8 @@ Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.
     gem 'mongoid_auto_increment_id', "0.4.0"
     # for Mongoid 3.0.x
     gem 'mongoid_auto_increment_id', "0.5.0"
+    # for Mongoid 3.1.x
+    gem 'mongoid_auto_increment_id', "0.5.1"
 
 ## USAGE
 
@@ -35,17 +37,19 @@ Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.
 
 ## Performance
 
+This is a branchmark results run in MacBook Pro Retina.
+
 with `mongoid_auto_increment_id`:
 
 ```
        user     system      total        real
-Generate 1  0.010000   0.000000   0.010000 (  0.004616)
+Generate 1  0.000000   0.000000   0.000000 (  0.004301)
 Post current: 1
 
-Generate 100  0.110000   0.010000   0.120000 (  0.161558)
+Generate 100  0.070000   0.000000   0.070000 (  0.091638)
 Post current: 101
 
-Generate 10,000 12.460000   1.710000  14.170000 ( 17.940543)
+Generate 10,000  7.300000   0.570000   7.870000 (  9.962469)
 Post current: 10101
 ```
 
@@ -53,12 +57,12 @@ without:
 
 ```
        user     system      total        real
-Generate 1  0.000000   0.000000   0.000000 (  0.004660)
+Generate 1  0.000000   0.000000   0.000000 (  0.002569)
 Post current: 1
 
-Generate 100  0.090000   0.000000   0.090000 (  0.091748)
+Generate 100  0.050000   0.000000   0.050000 (  0.052045)
 Post current: 101
 
-Generate 10,000  7.710000   0.950000   8.660000 (  8.660268)
+Generate 10,000  5.220000   0.170000   5.390000 (  5.389207)
 Post current: 10101
 ```
