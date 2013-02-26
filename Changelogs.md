@@ -1,3 +1,8 @@
+## 0.6.0
+
+* Support for Mongoid 3.0.0 - 4.0.0+;
+* Test work under Rails 4;
+
 ## 0.5.1
 
 * Support for Mongoid 3.1.x

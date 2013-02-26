@@ -7,6 +7,10 @@ describe "Mongoid::AutoIncrementId" do
     User.delete_all
     Log.delete_all
   end
+  
+  it "new record Id will be nil" do
+    Post.new.id.should == nil
+  end
 
   it "does Id start from 1" do
     Post.create(:title => "Foo bar").id.should == 1

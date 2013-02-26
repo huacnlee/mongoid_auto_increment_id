@@ -9,16 +9,8 @@ Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.
 ## Installation
 
 ```ruby
-# for Mongoid 2.2.x
-gem 'mongoid_auto_increment_id', "0.2.2"
-# for Mongoid 2.3.x
-gem 'mongoid_auto_increment_id', "0.3.1"
-# for Mongoid 2.4.x
-gem 'mongoid_auto_increment_id', "0.4.0"
-# for Mongoid 3.0.x
-gem 'mongoid_auto_increment_id', "0.5.0"
-# for Mongoid 3.1.x
-gem 'mongoid_auto_increment_id', "0.5.1"
+# Support Mongoid 3.0.0 - 4.0.0+
+gem 'mongoid_auto_increment_id', "0.6.0"
 ```
 
 ## USAGE

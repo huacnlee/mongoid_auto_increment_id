@@ -6,7 +6,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'active_support/all'
 require "mongoid"
 require "mocha"
-# require "mongoid_auto_increment_id"
+require "mongoid_auto_increment_id"
 require "uri"
 
 # These environment variables can be set if wanting to test against a database
