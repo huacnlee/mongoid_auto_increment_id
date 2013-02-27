@@ -14,6 +14,7 @@ describe "Mongoid::AutoIncrementId" do
 
   it "does Id start from 1" do
     Post.create(:title => "Foo bar").id.should == 1
+    Post.create(:title => "Foo bar").id.should == 2
     User.create(:email => "huacnlee@gmail.com").id.should == 1
   end
 

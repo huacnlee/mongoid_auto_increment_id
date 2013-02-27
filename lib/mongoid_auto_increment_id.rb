@@ -7,7 +7,7 @@ module Mongoid
                                              :update => { "$inc" => { :c => 1 } },
                                              :upsert => true,
                                              :new    => true })
-      o["value"]["c"]
+      o["value"]["c"].to_i
     end
   end
 
