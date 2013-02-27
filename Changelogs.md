@@ -1,3 +1,7 @@
+## 0.6.1
+
+* Fix id some time will get a float value in JRuby.
+
 ## 0.6.0
 
 * Support for Mongoid 3.0.0 - 4.0.0+;
