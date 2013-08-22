@@ -14,6 +14,7 @@ module Mongoid
   module Document
     # define Integer for id field
     included do
+      Mongoid.register_model(self)
       field :_id, :type => Integer
     end
 
