@@ -1,3 +1,8 @@
+## 0.6.2
+
+* Mongoid `create_indexes` and `remove_indexes` Rake task bug fixed, this bug will appear in Mongoid 3.1.0+.
+* This version is depending Mongoid 3.1.0+.
+
 ## 0.6.1
 
 * Fix id some time will get a float value in JRuby.
