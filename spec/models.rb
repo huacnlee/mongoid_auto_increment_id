@@ -54,6 +54,7 @@ end
 
 class PostExt
   include Mongoid::Document
+  
   belongs_to :post
-  field :ext_body
+  field :body_ext
 end
