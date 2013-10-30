@@ -13,8 +13,11 @@ Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.
 # Mongoid 3.0.x
 gem 'mongoid_auto_increment_id', "0.6.1"
 
-# Mongoid 3.1.0 - 4.0.0+
+# Mongoid 3.1.0
 gem 'mongoid_auto_increment_id', "0.6.2"
+
+# Mongoid 4.0.0+
+gem 'mongoid_auto_increment_id', "0.6.3"
 ```
 
 ## USAGE

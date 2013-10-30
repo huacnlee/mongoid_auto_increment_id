@@ -15,7 +15,7 @@ module Mongoid
     # define Integer for id field
     included do
       Mongoid.register_model(self)
-      field :_id, :type => Integer
+      field :_id, :type => Integer, :overwrite => true
     end
 
     # hack id nil when Document.new

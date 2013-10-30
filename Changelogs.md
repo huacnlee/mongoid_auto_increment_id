@@ -1,3 +1,7 @@
+## 0.6.3
+
+* Fix _id overwriting warnning with Mongoid 4.0+;
+
 ## 0.6.2
 
 * Mongoid `create_indexes` and `remove_indexes` Rake task bug fixed, this bug will appear in Mongoid 3.1.0+.
