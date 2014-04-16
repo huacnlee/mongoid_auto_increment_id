@@ -1,63 +1,59 @@
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: 9b3bc1264032209b7a6c0e82d0ca656f401e476b
+  revision: da35e0cd0fc17651c263e0f74d90b0adf5fbb409
   specs:
-    mongoid (4.0.0)
-      activemodel (~> 4.0.0)
-      moped (~> 2.0.beta3)
-      origin (~> 1.0)
-      tzinfo (~> 0.3.37)
+    mongoid (4.0.0.beta1)
+      activemodel (>= 4.0.0)
+      moped (~> 2.0.beta6)
+      origin (~> 2.1)
+      tzinfo (>= 0.3.37)
 
 GEM
   remote: http://ruby.taobao.org/
   specs:
-    activemodel (4.0.0)
-      activesupport (= 4.0.0)
-      builder (~> 3.1.0)
-    activesupport (4.0.0)
-      i18n (~> 0.6, >= 0.6.4)
-      minitest (~> 4.2)
-      multi_json (~> 1.3)
+    activemodel (4.1.0)
+      activesupport (= 4.1.0)
+      builder (~> 3.1)
+    activesupport (4.1.0)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
       thread_safe (~> 0.1)
-      tzinfo (~> 0.3.37)
-    atomic (1.1.14)
-    atomic (1.1.14-java)
-    bson (2.0.0.rc3)
-    bson (2.0.0.rc3-java)
-    builder (3.1.4)
-    diff-lcs (1.2.4)
-    i18n (0.6.5)
-    metaclass (0.0.1)
-    minitest (4.7.5)
+      tzinfo (~> 1.1)
+    bson (2.2.2)
+    builder (3.2.2)
+    connection_pool (2.0.0)
+    diff-lcs (1.2.5)
+    i18n (0.6.9)
+    json (1.8.1)
+    metaclass (0.0.4)
+    minitest (5.3.2)
     mocha (0.10.0)
       metaclass (~> 0.0.1)
-    moped (2.0.0.beta3)
-      bson (~> 2.0.0.rc3)
-      optionable (~> 0.1.1)
-    multi_json (1.8.2)
-    optionable (0.1.1)
-    origin (1.1.0)
-    rake (10.1.0)
+    moped (2.0.0.rc1)
+      bson (~> 2.2)
+      connection_pool (~> 2.0)
+      optionable (~> 0.2.0)
+    optionable (0.2.0)
+    origin (2.1.1)
+    rake (10.2.2)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.6)
-    rspec-expectations (2.14.3)
+    rspec-core (2.14.8)
+    rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.4)
-    thread_safe (0.1.3)
-      atomic
-    thread_safe (0.1.3-java)
-      atomic
-    tzinfo (0.3.38)
+    rspec-mocks (2.14.6)
+    thread_safe (0.3.3)
+    tzinfo (1.1.0)
+      thread_safe (~> 0.1)
 
 PLATFORMS
-  java
   ruby
 
 DEPENDENCIES
-  activesupport (= 4.0.0)
+  activesupport (= 4.1.0)
   mocha (= 0.10.0)
   mongoid!
   rake

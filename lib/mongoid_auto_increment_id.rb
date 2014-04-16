@@ -12,10 +12,12 @@ module Mongoid
   end
 
   module Document
-    # define Integer for id field
-    included do
-      Mongoid.register_model(self)
-      field :_id, :type => Integer, :overwrite => true
+    def self.included(base)
+      base.class_eval do
+        # define Integer for id field
+        Mongoid.register_model(self)
+        field :_id, :type => Integer, :overwrite => true
+      end
     end
 
     # hack id nil when Document.new

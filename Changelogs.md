@@ -1,3 +1,7 @@
+## 0.6.4
+
+* Rails 4.1.0 support.
+
 ## 0.6.3
 
 * Fix _id overwriting warnning with Mongoid 4.0+;
