@@ -1,4 +1,4 @@
-source 'http://ruby.taobao.org'
+source 'https://ruby.taobao.org'
 gem "rake"
 group :test do
   gem 'activesupport', "4.1.0"

@@ -9,7 +9,7 @@ GIT
       tzinfo (>= 0.3.37)
 
 GEM
-  remote: http://ruby.taobao.org/
+  remote: https://ruby.taobao.org/
   specs:
     activemodel (4.1.0)
       activesupport (= 4.1.0)

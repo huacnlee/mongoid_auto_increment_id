@@ -17,7 +17,7 @@ gem 'mongoid_auto_increment_id', "0.6.1"
 gem 'mongoid_auto_increment_id', "0.6.2"
 
 # Mongoid 4.0.0+
-gem 'mongoid_auto_increment_id', "0.6.4"
+gem 'mongoid_auto_increment_id', "0.6.5"
 ```
 
 ## USAGE

@@ -1,3 +1,7 @@
+## 0.6.5
+
+* MongoDb Replicate Set support. by @junwchina
+
 ## 0.6.4
 
 * Rails 4.1.0 support.
