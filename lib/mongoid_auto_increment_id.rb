@@ -2,11 +2,18 @@ module Mongoid
   class Identity
     # Generate auto increment id
     def self.generate_id(document)
-      o = Mongoid::Sessions.default.command({:findAndModify => "mongoid.auto_increment_ids",
-                                             :query  => { :_id => document.collection_name },
-                                             :update => { "$inc" => { :c => 1 } },
-                                             :upsert => true,
-                                             :new    => true })
+      database_name = Mongoid::Sessions.default.send(:current_database).name
+
+      o = nil
+      Mongoid::Sessions.default.cluster.with_primary do |node| 
+         o = node.command(database_name, 
+                      {"findAndModify" => "mongoid.auto_increment_ids",  
+                       :query  => { :_id => document.collection_name }, 
+                       :update => { "$inc" => { :c => 1 }}, 
+                       :upsert => true, 
+                       :new => true }, {})
+      end
+
       o["value"]["c"].to_i
     end
   end
