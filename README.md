@@ -27,7 +27,7 @@ If you want use sequence cache to reduce MongoDB write, you can enable cache:
 config/initializes/mongoid_auto_increment_id.rb
 
 ```ruby
-Mongoid::AutoIncrementId.cache_store = ActiveSupport::Cache.lookup_store(:memcache_store, "127.0.0.1")
+# Mongoid::AutoIncrementId.cache_store = ActiveSupport::Cache::MemoryStore.new
 # First call will generate 200 ids and caching in cache_store
 # Then the next 199 ids will return from cache_store
 # Until 200 ids used, it will generate next 200 ids again.
