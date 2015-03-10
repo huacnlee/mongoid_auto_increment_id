@@ -11,6 +11,11 @@ class Post
   has_one :post_ext
 end
 
+class SeqCacheTest
+  include Mongoid::Document
+  field :name
+end
+
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps

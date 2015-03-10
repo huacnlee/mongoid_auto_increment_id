@@ -17,8 +17,24 @@ gem 'mongoid_auto_increment_id', "0.6.1"
 gem 'mongoid_auto_increment_id', "0.6.2"
 
 # Mongoid 4.0.0+
-gem 'mongoid_auto_increment_id', "0.6.5"
+gem 'mongoid_auto_increment_id', "0.7.0"
 ```
+
+## Configure
+
+If you want use sequence cache to reduce MongoDB write, you can enable cache:
+
+config/initializes/mongoid_auto_increment_id.rb
+
+```ruby
+Mongoid::AutoIncrementId.cache_store = ActiveSupport::Cache.lookup_store(:memcache_store, "127.0.0.1")
+# First call will generate 200 ids and caching in cache_store
+# Then the next 199 ids will return from cache_store
+# Until 200 ids used, it will generate next 200 ids again.
+Mongoid::AutoIncrementId.seq_cache_size = 200
+```
+
+> NOTICE! mongoid_auto_increment_id is very fast in default config, you may not need enable that, if you project not need insert huge rows in a moment.
 
 ## USAGE
 

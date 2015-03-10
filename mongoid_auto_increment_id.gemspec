@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# encoding: utf-8
 $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "mongoid_auto_increment_id"
-  s.version     = "0.6.5"
+  s.version     = "0.7.0"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jason Lee"]
   s.email       = ["huacnlee@gmail.com"]

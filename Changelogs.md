@@ -1,6 +1,10 @@
+## 0.7.0
+
+* Add sequence cache config to allow you generate a range ids, and reduce MongoDB write.
+
 ## 0.6.5
 
-* MongoDb Replicate Set support. by @junwchina
+* MongoDB Replicate Set support. by @junwchina
 
 ## 0.6.4
 
