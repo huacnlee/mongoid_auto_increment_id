@@ -34,7 +34,7 @@ config/initializes/mongoid_auto_increment_id.rb
 Mongoid::AutoIncrementId.seq_cache_size = 200
 ```
 
-> NOTICE! mongoid_auto_increment_id is very fast in default config, you may not need enable that, if you project not need insert huge rows in a moment.
+> NOTE: mongoid_auto_increment_id is very fast in default config, you may don't need enable that, if you project not need insert huge rows in a moment.
 
 ## USAGE
 

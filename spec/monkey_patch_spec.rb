@@ -5,6 +5,6 @@ describe Mongoid::Document do
     class TestModel
       include Mongoid::Document
     end
-    Mongoid.models.should be_include(TestModel)
+    expect(Mongoid.models).to be_include(TestModel)
   end
 end
