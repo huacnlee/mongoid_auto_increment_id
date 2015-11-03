@@ -17,7 +17,7 @@ gem 'mongoid_auto_increment_id', "0.6.2"
 # Mongoid 4.x
 gem 'mongoid_auto_increment_id', "0.7.0"
 # Mongoid 5.x
-gem 'mongoid_auto_increment_id', "0.8.0"
+gem 'mongoid_auto_increment_id', "0.8.1"
 ```
 
 ## Configure
