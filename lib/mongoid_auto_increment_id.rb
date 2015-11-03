@@ -1,3 +1,5 @@
+require "mongoid"
+require 'active_support/all'
 require 'mongoid/auto_increment_id/config'
 require 'mongoid/auto_increment_id/version'
 

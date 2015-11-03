@@ -3,8 +3,6 @@ require 'rubygems'
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'active_support/all'
-require "mongoid"
 require "mocha"
 require "mongoid_auto_increment_id"
 require "uri"
