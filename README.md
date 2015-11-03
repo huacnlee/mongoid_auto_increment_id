@@ -12,12 +12,12 @@ Idea from MongoDB document: [How to Make an Auto Incrementing Field](http://www.
 ```ruby
 # Mongoid 3.0.x
 gem 'mongoid_auto_increment_id', "0.6.1"
-
-# Mongoid 3.1.0
+# Mongoid 3.1.x
 gem 'mongoid_auto_increment_id', "0.6.2"
-
-# Mongoid 4.0.0+
+# Mongoid 4.x
 gem 'mongoid_auto_increment_id', "0.7.0"
+# Mongoid 5.x
+gem 'mongoid_auto_increment_id', "0.8.0"
 ```
 
 ## Configure

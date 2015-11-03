@@ -22,9 +22,20 @@ def database_id
   ENV["CI"] ? "mongoid_aii_#{Process.pid}" : "mongoid_aii_test"
 end
 
+MONGOID_CONFIG = {
+  clients: {
+    default: {
+      database: database_id,
+      hosts: [ "#{HOST}:#{PORT}" ]
+    }
+  }
+}
+
+
 # Set the database that the spec suite connects to.
+Mongo::Logger.logger.level = Logger::WARN
 Mongoid.configure do |config|
-  config.connect_to(database_id)
+  config.load_configuration(MONGOID_CONFIG)
 end
 
 require "models"
@@ -33,9 +44,5 @@ RSpec.configure do |config|
   config.mock_with :mocha
   config.after :suite do
     Mongoid.purge!
-    # Mongoid::IdentityMap.clear
-    if ENV["CI"]
-      Mongoid::Threaded.sessions[:default].drop
-    end
   end
 end

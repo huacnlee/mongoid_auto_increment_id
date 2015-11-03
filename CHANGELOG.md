@@ -1,3 +1,8 @@
+## 0.8.0
+
+- Fix for support Mongoid 5.x, and only work on `Mongoid >= 5.0.0`,
+  If you want use for Mongoid 4.x, please use 0.7.0.
+
 ## 0.7.0
 
 * Add sequence cache config to allow you generate a range ids, and reduce MongoDB write.

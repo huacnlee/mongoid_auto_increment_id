@@ -1,55 +1,52 @@
-require "mongoid/auto_increment_id/config"
+require 'mongoid/auto_increment_id/config'
+require 'mongoid/auto_increment_id/version'
 
 module Mongoid
   class Identity
-    MAII_TABLE_NAME = "mongoid.auto_increment_ids".freeze
+    MAII_TABLE_NAME = 'mongoid.auto_increment_ids'.freeze
 
-    # Generate auto increment id
-    # params:
-    def self.generate_id(document)
-      if Mongoid::AutoIncrementId.cache_enabled?
-        cache_key = self.maii_cache_key(document)
-        if ids = Mongoid::AutoIncrementId.cache_store.read(cache_key)
-          cached_id = self.shift_id(ids, cache_key)
-          return cached_id if !cached_id.blank?
+    class << self
+
+      # Generate auto increment id
+      # params:
+      def generate_id(document)
+        if AutoIncrementId.cache_enabled?
+          cache_key = self.maii_cache_key(document)
+          if ids = Mongoid::AutoIncrementId.cache_store.read(cache_key)
+            cached_id = self.shift_id(ids, cache_key)
+            return cached_id if !cached_id.blank?
+          end
         end
-      end
 
-      database_name = Mongoid::Sessions.default.send(:current_database).name
-
-      o = nil
-      Mongoid::Sessions.default.cluster.with_primary do |node|
         opts = {
           findAndModify: MAII_TABLE_NAME,
           query: { _id: document.collection_name },
-          update: { "$inc" => { c: Mongoid::AutoIncrementId.seq_cache_size } },
+          update: { '$inc' => { c: AutoIncrementId.seq_cache_size } },
           upsert: true,
           new: true
         }
-        o = node.command(database_name, opts, {})
+        o = Mongoid.default_client.database.command(opts, {})
+
+        last_seq = o.documents[0]['value']['c'].to_i
+
+        if AutoIncrementId.cache_enabled?
+          ids = ((last_seq - AutoIncrementId.seq_cache_size) + 1 .. last_seq).to_a
+          self.shift_id(ids, cache_key)
+        else
+          last_seq
+        end
       end
 
-      last_seq = o["value"]["c"].to_i
-
-      if Mongoid::AutoIncrementId.cache_enabled?
-        ids = ((last_seq - Mongoid::AutoIncrementId.seq_cache_size) + 1 .. last_seq).to_a
-        self.shift_id(ids, cache_key)
-      else
-        last_seq
+      def shift_id(ids, cache_key)
+        return nil if ids.blank?
+        first_id = ids.shift
+        AutoIncrementId.cache_store.write(cache_key, ids)
+        first_id
       end
-    end
 
-
-    private
-    def self.shift_id(ids, cache_key)
-      return nil if ids.blank?
-      first_id = ids.shift
-      Mongoid::AutoIncrementId.cache_store.write(cache_key, ids)
-      first_id
-    end
-
-    def self.maii_cache_key(document)
-      "maii-seqs-#{document.collection_name}"
+      def maii_cache_key(document)
+        "maii-seqs-#{document.collection_name}"
+      end
     end
   end
 
