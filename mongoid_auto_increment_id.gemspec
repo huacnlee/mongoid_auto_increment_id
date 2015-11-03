@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.licenses     = 'MIT'
 
-  s.add_dependency "mongoid", ["> 5.0.0","< 6.0.0"]
+  s.add_dependency "mongoid", [">= 5.0.0","< 6.0.0"]
 end
