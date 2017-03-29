@@ -63,19 +63,12 @@ module Mongoid
       end
     end
 
-    # hack id nil when Document.new
-    def identify
-      Identity.new(self).create
-      nil
-    end
+    alias_method :super_initialize, :initialize
 
-    alias_method :super_as_document, :as_document
-    def as_document
-      result = super_as_document
-      if result[ID_FIELD].blank?
-        result[ID_FIELD] = Identity.generate_id(self)
-      end
-      result
+    def initialize(attrs = nil)
+      @attributes ||= {}
+      self[ID_FIELD] = Identity.generate_id(self)
+      super_initialize attrs
     end
   end
 end

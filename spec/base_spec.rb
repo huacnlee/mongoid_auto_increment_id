@@ -2,6 +2,10 @@ require "spec_helper"
 
 describe "Mongoid::AutoIncrementId" do
   describe 'Base test' do
+    before do
+      Mongoid.purge!
+    end
+
     after do
       Post.delete_all
       Tag.delete_all
@@ -9,8 +13,8 @@ describe "Mongoid::AutoIncrementId" do
       Log.delete_all
     end
   
-    it "new record Id will be nil" do
-      expect(Post.new.id).to eq nil
+    it "new record Id will be integer" do
+      expect(Post.new.id).to be_a Integer
     end
 
     it "does Id start from 1" do
@@ -39,9 +43,9 @@ describe "Mongoid::AutoIncrementId" do
       expect(p4.id - 2).to eq p2.id
     end
 
-    it "does return nil id when Model.new" do
-      expect(Post.new.id).to eq nil
-      expect(Post.new._id).to eq nil
+    it "does return id when Model.new" do
+      expect(Post.new.id).to be_a Integer
+      expect(Post.new._id).to be_a Integer
     end
 
     it "does can find data by String and Integer id" do
@@ -112,6 +116,17 @@ describe "Mongoid::AutoIncrementId" do
       expect(Log.where(:title => "test user log").first._type).to eq "UserLog"
       expect(Log.where(:title => "test tag log").count).to eq 1
       expect(Log.where(:title => "test tag log").first._type).to eq "TagLog"
+    end
+
+    context "when accepts_nested_attributes_for" do
+      before { User.accepts_nested_attributes_for :posts }
+
+      it "set association" do
+        user = User.new(:email => "t@1.com", :posts_attributes => { "0" => {:title => "This is title!"}})
+        user.save
+        user.reload
+        expect(user.posts.size).to eq(1)
+      end
     end
   end
   

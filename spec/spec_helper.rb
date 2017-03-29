@@ -40,7 +40,4 @@ require "models"
 
 RSpec.configure do |config|
   config.mock_with :mocha
-  config.after :suite do
-    Mongoid.purge!
-  end
 end
